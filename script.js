@@ -77,7 +77,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     className: 'dark-tiles'
 }).addTo(map);
 
-const createCustomIcon = (isActive = false) => {
+const createCustomIcon = (isActive = false, isFavorite = false) => {
+    if (isFavorite) {
+        return L.divIcon({
+            className: 'custom-marker-wrapper',
+            html: `<div style="font-size: ${isActive ? '28px' : '20px'}; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8)); transition: all 0.3s ease;">⭐</div>`,
+            iconSize: isActive ? [30, 30] : [24, 24],
+            iconAnchor: isActive ? [15, 15] : [12, 12]
+        });
+    }
+
     return L.divIcon({
         className: 'custom-marker-wrapper',
         html: `<div class="custom-marker" style="width: ${isActive ? '24px' : '16px'}; height: ${isActive ? '24px' : '16px'}; background-color: ${isActive ? '#fcd34d' : '#f59e0b'}; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); transition: all 0.3s ease;"></div>`,
@@ -93,7 +102,7 @@ const sidebarList = document.getElementById('locations-list');
 
 locations.forEach(loc => {
     // Marker
-    const marker = L.marker([loc.lat, loc.lng], { icon: createCustomIcon() }).addTo(map);
+    const marker = L.marker([loc.lat, loc.lng], { icon: createCustomIcon(false, loc.isFavorite) }).addTo(map);
     
     const popupContent = `
         <div class="popup-title">${loc.title}</div>
@@ -145,14 +154,16 @@ map.fitBounds(group.getBounds().pad(0.1));
 function activateLocation(id) {
     if (activeCardId) {
         document.getElementById(`card-${activeCardId}`).classList.remove('active');
-        markers[activeCardId].setIcon(createCustomIcon(false));
+        const prevLoc = locations.find(l => l.id === activeCardId);
+        markers[activeCardId].setIcon(createCustomIcon(false, prevLoc ? prevLoc.isFavorite : false));
     }
     
     activeCardId = id;
     document.getElementById(`card-${id}`).classList.add('active');
     
+    const currLoc = locations.find(l => l.id === id);
     const marker = markers[id];
-    marker.setIcon(createCustomIcon(true));
+    marker.setIcon(createCustomIcon(true, currLoc ? currLoc.isFavorite : false));
     marker.openPopup();
     
     map.flyTo(marker.getLatLng(), 15, {
