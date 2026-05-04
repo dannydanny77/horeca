@@ -1,5 +1,12 @@
 // `locations` array is now loaded from data.js
 
+// Sort locations so favorites appear at the top
+locations.sort((a, b) => {
+    if (a.isFavorite && !b.isFavorite) return -1;
+    if (!a.isFavorite && b.isFavorite) return 1;
+    return 0;
+});
+
 // --- TAB SWITCHING LOGIC ---
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -23,9 +30,10 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 const tbody = document.querySelector('#matrix-table tbody');
 locations.forEach(loc => {
     const tr = document.createElement('tr');
+    const isFav = loc.isFavorite ? '<span style="color:#f59e0b; margin-left:8px; font-size:1.2rem;" title="Favorite">⭐</span>' : '';
     tr.innerHTML = `
         <td class="col-location">
-            <div style="font-size:1rem; margin-bottom:4px; font-weight: 700;">${loc.title}</div>
+            <div style="font-size:1.1rem; margin-bottom:4px; font-weight: 700;">${loc.title}${isFav}</div>
             <a href="${loc.link}" target="_blank" style="font-size:0.75rem; color:var(--accent-primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
                 View Listing 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -105,9 +113,11 @@ locations.forEach(loc => {
     if (loc.casualDiningKebab === 'Yes') suitedFor.push('Kebab');
     const tagText = suitedFor.length > 0 ? suitedFor.join(' & ') : 'Review Needed';
 
+    const isFavCard = loc.isFavorite ? '<span style="color:#f59e0b; margin-left:6px;" title="Favorite">⭐</span>' : '';
+
     card.innerHTML = `
         <div class="card-tag">${tagText}</div>
-        <div class="card-title">${loc.title}</div>
+        <div class="card-title">${loc.title}${isFavCard}</div>
         <div class="card-neighborhood">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             ${loc.neighborhood}

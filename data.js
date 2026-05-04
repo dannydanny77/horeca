@@ -15,7 +15,8 @@ const locations = [
         "lng": 4.8996689,
         "link": "https://horecasite.nl/advertentie/nederland/noord-holland/amsterdam/48538-id4013-nette-casco-plus-horecalocatie",
         "fastFoodDoner": "Yes",
-        "casualDiningKebab": "Maybe"
+        "casualDiningKebab": "No",
+        "isFavorite": true
     },
     {
         "id": 2,
@@ -69,7 +70,8 @@ const locations = [
         "lng": 4.8931947,
         "link": "https://horecasite.nl/advertentie/nederland/noord-holland/amsterdam/46394-top-onderneming-op-een-top-locatie-noosh-amsterdam-eur-90-000",
         "fastFoodDoner": "Yes",
-        "casualDiningKebab": "No"
+        "casualDiningKebab": "No",
+        "isFavorite": true
     },
     {
         "id": 5,
@@ -86,8 +88,9 @@ const locations = [
         "lat": 52.3375298,
         "lng": 4.8694373,
         "link": "https://horecaspot.nl/aanbod/vastgoed-6130-the-cubehouse-amsterdam",
-        "fastFoodDoner": "No",
-        "casualDiningKebab": "Yes"
+        "fastFoodDoner": "Yes",
+        "casualDiningKebab": "Yes",
+        "isFavorite": true
     },
     {
         "id": 6,
@@ -141,7 +144,8 @@ const locations = [
         "lng": 4.8562351,
         "link": "https://horecaspot.nl/aanbod/bedrijf-6187-ideale-locatie-om-te-starten",
         "fastFoodDoner": "Yes",
-        "casualDiningKebab": "Maybe"
+        "casualDiningKebab": "Yes",
+        "isFavorite": true
     },
     {
         "id": 9,
@@ -159,7 +163,7 @@ const locations = [
         "lng": 4.8682737,
         "link": "https://horecaspot.nl/aanbod/bedrijf-6096-id3996-stijlvolle-horecazaak-met-terras-aan-de-buitenveldertelaan-amsterdam",
         "fastFoodDoner": "Yes",
-        "casualDiningKebab": "Yes"
+        "casualDiningKebab": "No"
     },
     {
         "id": 10,
@@ -176,8 +180,9 @@ const locations = [
         "lat": 52.3660776,
         "lng": 4.8995135,
         "link": "https://duijnhorecamakelaars.nl/aanbod/casco-horecaruimte-aan-de-amstelstraat-in-amsterdam/",
-        "fastFoodDoner": "No",
-        "casualDiningKebab": "Yes"
+        "fastFoodDoner": "Yes",
+        "casualDiningKebab": "Yes",
+        "isFavorite": true
     },
     {
         "id": 11,
@@ -195,7 +200,8 @@ const locations = [
         "lng": 4.8560377,
         "link": "https://duijnhorecamakelaars.nl/aanbod/complete-horecazaak-aan-bekende-straat-in-amsterdam-zuid/",
         "fastFoodDoner": "Yes",
-        "casualDiningKebab": "Yes"
+        "casualDiningKebab": "Yes",
+        "isFavorite": true
     },
     {
         "id": 13,
