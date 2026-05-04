@@ -6,7 +6,7 @@ const locations = [
         "surroundings": "Bruisende centrum, near Rembrandtplein. Levendige mix of horeca, retail, high tourist and local traffic.",
         "rent": "\u20ac 4.042 / mo",
         "takeover": "\u20ac 50.000",
-        "size": "Not specified (has 4.5m2 entresol)",
+        "size": "60 m\u00b2 (has 4.5m2 entresol)",
         "rentableSpace": "Casco plus delivery, wide facade, large windows, seating at front, open kitchen setup behind.",
         "suitability": "High",
         "suitClass": "suit-high",
