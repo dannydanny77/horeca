@@ -1,0 +1,494 @@
+/* 
+  Premium Dark Theme for Horeca Locations 
+*/
+
+:root {
+    --bg-base: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-surface-hover: #334155;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --accent-primary: #f59e0b;
+    --accent-glow: rgba(245, 158, 11, 0.2);
+    
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    
+    --font-main: 'Inter', sans-serif;
+    
+    --transition-snappy: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-main);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    overflow: hidden; /* Prevent body scroll, handle scroll in containers */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Navigation */
+.top-nav {
+    height: 64px;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.brand-icon {
+    font-size: 1.5rem;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 8px;
+    background: rgba(0,0,0,0.2);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: var(--font-main);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-snappy);
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    background: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+/* View Containers */
+.view-container {
+    display: none;
+    flex: 1;
+    height: calc(100vh - 64px);
+    width: 100%;
+}
+
+.view-container.active {
+    display: flex;
+}
+
+/* Map View Layout */
+.app-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 400px;
+    min-width: 400px;
+    background-color: var(--bg-base);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: linear-gradient(180deg, rgba(30,41,59,0.5) 0%, rgba(15,23,42,0) 100%);
+}
+
+.sidebar-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.sidebar-header p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Locations List */
+.locations-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.locations-list::-webkit-scrollbar { width: 6px; }
+.locations-list::-webkit-scrollbar-track { background: transparent; }
+.locations-list::-webkit-scrollbar-thumb { background: var(--bg-surface-hover); border-radius: 10px; }
+
+/* Location Card */
+.location-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: var(--transition-snappy);
+    position: relative;
+}
+
+.location-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.location-card.active {
+    border-color: var(--accent-primary);
+    background-color: rgba(245, 158, 11, 0.05);
+}
+
+.card-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: rgba(245, 158, 11, 0.15);
+    color: var(--accent-primary);
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    padding-right: 50px;
+}
+
+.card-neighborhood {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Map Container */
+.map-container {
+    flex: 1;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    background-color: #0b0f19;
+}
+
+.dark-tiles {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.leaflet-popup-content { margin: 12px; line-height: 1.4; }
+.popup-title { font-weight: 600; font-size: 0.9rem; color: var(--accent-primary); margin-bottom: 2px;}
+.popup-detail { font-size: 0.8rem; color: var(--text-secondary); }
+
+.map-overlay {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 400;
+}
+
+.overlay-pill {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Matrix View Styling */
+.matrix-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.matrix-wrapper::-webkit-scrollbar { width: 8px; }
+.matrix-wrapper::-webkit-scrollbar-track { background: transparent; }
+.matrix-wrapper::-webkit-scrollbar-thumb { background: var(--bg-surface-hover); border-radius: 10px; }
+
+.matrix-header {
+    margin-bottom: 32px;
+}
+
+.matrix-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #fff, var(--accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.matrix-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.table-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.matrix-table th {
+    background: rgba(0,0,0,0.2);
+    padding: 16px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-strong);
+    white-space: nowrap;
+}
+
+.matrix-table td {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.matrix-table tr:last-child td {
+    border-bottom: none;
+}
+
+.matrix-table tr:hover td {
+    background: rgba(255,255,255,0.02);
+}
+
+/* Specific Table Column Styling */
+.col-location {
+    font-weight: 600;
+    color: var(--text-primary);
+    width: 15%;
+}
+.col-surroundings { width: 25%; }
+.col-space { width: 25%; }
+.col-financials { width: 15%; }
+.col-suitability { width: 20%; }
+
+.fin-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed rgba(255,255,255,0.05);
+}
+.fin-item:last-child { border-bottom: none; }
+.fin-label { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;}
+.fin-val { color: var(--text-primary); font-weight: 500;}
+
+.suitability-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.suit-very-high { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+.suit-high { background: rgba(245, 158, 11, 0.15); color: var(--accent-primary); border: 1px solid rgba(245,158,11,0.3); }
+.suit-moderate { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
+
+.suit-yes { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+.suit-no { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+.suit-maybe { background: rgba(245, 158, 11, 0.15); color: var(--accent-primary); border: 1px solid rgba(245,158,11,0.3); }
+
+/* Responsive / Mobile Optimization */
+@media (max-width: 900px) {
+    body, html {
+        overflow: auto; /* Allow natural scrolling on mobile */
+    }
+
+    .top-nav {
+        padding: 0 12px;
+    }
+
+    .nav-brand { font-size: 1.1rem; }
+    
+    /* Hide the text next to icon on very small screens to save space */
+    @media (max-width: 400px) {
+        .nav-brand span:last-child { display: none; }
+    }
+
+    .tab-btn { padding: 8px 12px; font-size: 0.8rem; }
+
+    /* Fix view container heights for mobile */
+    .view-container {
+        height: auto;
+        min-height: calc(100vh - 64px);
+    }
+
+    .app-container { flex-direction: column; }
+    
+    /* Map & Sidebar */
+    .map-container { 
+        height: 45vh; 
+        min-height: 300px;
+        order: 1; 
+        flex: none; 
+    }
+    
+    .sidebar { 
+        width: 100%; 
+        min-width: 100%; 
+        height: auto; 
+        flex: 1; 
+        order: 2; 
+        border-right: none; 
+        border-top: 1px solid var(--border-subtle); 
+    }
+    
+    .locations-list {
+        overflow-y: visible; /* Let the whole page scroll */
+    }
+    
+    /* Matrix View */
+    .matrix-wrapper { padding: 16px; overflow-y: visible; }
+    .matrix-header h2 { font-size: 1.35rem; }
+    
+    .table-container { 
+        border-radius: 0; 
+        border: none; 
+        box-shadow: none; 
+        background: transparent; 
+    }
+    
+    /* Convert table to cards on mobile */
+    .matrix-table thead { display: none; } /* Hide table headers */
+    .matrix-table, .matrix-table tbody, .matrix-table tr, .matrix-table td { display: block; width: 100%; }
+    
+    .matrix-table tr {
+        background: var(--bg-surface);
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    
+    .matrix-table td { 
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .matrix-table td:last-child { border-bottom: none; }
+    
+    /* Custom labels for mobile cards */
+    .col-location { 
+        font-size: 1.15rem; 
+        padding-top: 16px !important; 
+        background: rgba(0,0,0,0.15);
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .col-surroundings::before { content: 'Neighborhood & Surroundings'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .col-space::before { content: 'Space Overview'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+    .col-financials::before { content: 'Financials'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+    
+    /* Suitability pills row for mobile */
+    .col-fastfood, .col-casual { 
+        display: inline-block; 
+        width: 50%; 
+        border-bottom: none !important; 
+        padding-bottom: 0px !important;
+        vertical-align: top;
+    }
+    
+    .col-fastfood::before { content: 'Fast Food Döner'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+    .col-casual::before { content: 'Casual Dining'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+    
+    .col-rationale { 
+        padding-bottom: 20px !important; 
+        padding-top: 8px !important;
+    }
+    
+    .col-rationale::before { content: 'Concept Notes'; display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horeca Locations Amsterdam</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-icon">🥙</span>
+            <span>Döner & Kebab Concepts</span>
+        </div>
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-target="map-view">Map View</button>
+            <button class="tab-btn" data-target="matrix-view">Matrix & Details</button>
+        </div>
+    </nav>
+
+    <!-- Map View (Default) -->
+    <div id="map-view" class="view-container active">
+        <div class="app-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Available Locations</h2>
+                    <p>Select a location to view on the map</p>
+                </div>
+                
+                <div class="locations-list" id="locations-list">
+                    <!-- Location cards will be injected here via JS -->
+                </div>
+            </aside>
+
+            <!-- Main Map Area -->
+            <main class="map-container">
+                <div id="map"></div>
+                <div class="map-overlay">
+                    <div class="overlay-pill">
+                        <span class="pulse-dot"></span>
+                        <span>Live Map View</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Matrix View -->
+    <div id="matrix-view" class="view-container">
+        <div class="matrix-wrapper">
+            <div class="matrix-header">
+                <h2>Location Matrix & Deep Dive</h2>
+                <p>Comprehensive overview of rentable spaces and neighborhood demographics.</p>
+            </div>
+            
+            <div class="table-container">
+                <table class="matrix-table" id="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Neighborhood & Surroundings</th>
+                            <th>Rentable Space Overview</th>
+                            <th>Financials</th>
+                            <th>Fast Food Döner</th>
+                            <th>Casual Dining Kebab</th>
+                            <th>Concept Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Custom JS -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
